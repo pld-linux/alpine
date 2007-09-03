@@ -3,18 +3,21 @@
 # - alpine should obsolete pine, link pine -> alpine should be made
 # - pine -> alpine config converter
 # - review patches from pine:
-#   - maildir support is missing - maybe some fixed patch from http://staff.washington.edu/chappa/pine/ ?
+#   - home_etc support
+#   - ....many more
 Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 Version:	0.999
-Release:	0.2
+Release:	0.3
 Epoch:		1
 License:	Apache License 2.0
 Group:		Applications/Mail
 Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source0-md5:	082de388a998c1faa2385ebdfd6800f5
 Source1:	pico.desktop
+# http://staff.washington.edu/chappa/alpine/info/all.html
+Patch0:		http://staff.washington.edu/chappa/alpine/patches/%{name}-%{version}/all.patch.gz
 URL:		http://www.washington.edu/alpine
 BuildRequires:	krb5-devel
 BuildRequires:	ncurses-devel
@@ -92,6 +95,7 @@ ajuda de acordo com o contexto está disponível.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure \
