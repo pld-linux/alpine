@@ -9,7 +9,7 @@ Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 Version:	0.999
-Release:	0.3
+Release:	0.4
 Epoch:		1
 License:	Apache License 2.0
 Group:		Applications/Mail
@@ -19,6 +19,8 @@ Source1:	pico.desktop
 # http://staff.washington.edu/chappa/alpine/info/all.html
 Patch0:		http://staff.washington.edu/chappa/alpine/patches/%{name}-%{version}/all.patch.gz
 URL:		http://www.washington.edu/alpine
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	krb5-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	openldap-devel
@@ -98,6 +100,9 @@ ajuda de acordo com o contexto está disponível.
 %patch0 -p1
 
 %build
+%{__autoconf}
+%{__aclocal} -I m4
+%{__automake}
 %configure \
 	--enable-quotas \
 	--with-smtp-msa=%{_libdir}/sendmail \
