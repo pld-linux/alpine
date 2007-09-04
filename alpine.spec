@@ -1,23 +1,25 @@
 # TODO:
 # - backport man-pages from pine.spec
 # - alpine should obsolete pine, link pine -> alpine should be made
-# - pine -> alpine config converter
 # - review patches from pine:
 #   - home_etc support
 #   - ....many more
 Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
-Version:	0.999
-Release:	0.4
+Version:	0.9999
+Release:	1
 Epoch:		1
 License:	Apache License 2.0
 Group:		Applications/Mail
-Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
-# Source0-md5:	082de388a998c1faa2385ebdfd6800f5
+# Main site:
+#Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
+# Source with applied patches from http://staff.washington.edu/chappa/alpine/ 
+Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	e095c1689d6c0fc6fd610464ba9c3cf8
 Source1:	pico.desktop
 # http://staff.washington.edu/chappa/alpine/info/all.html
-Patch0:		http://staff.washington.edu/chappa/alpine/patches/%{name}-%{version}/all.patch.gz
+#Patch0:		http://staff.washington.edu/chappa/alpine/patches/%{name}-%{version}/all.patch.gz
 URL:		http://www.washington.edu/alpine
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -97,7 +99,6 @@ ajuda de acordo com o contexto está disponível.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__autoconf}
