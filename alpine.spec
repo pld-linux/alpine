@@ -22,6 +22,7 @@ Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}
 Source1:	pico.desktop
 Source2:        %{name}.desktop
 Source3:        %{name}.png
+Patch0:		%{name}-thread_end.patch
 URL:		http://www.washington.edu/alpine
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -101,6 +102,7 @@ ajuda de acordo com o contexto está disponível.
 
 %prep
 %setup -q -n %{name}-%{ver}
+%patch0 -p1
 
 %build
 %{__autoconf}
