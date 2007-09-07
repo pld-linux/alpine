@@ -20,11 +20,11 @@ Group:		Applications/Mail
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
 # Source0-md5:	888ecef4d50e15e4237f7a7a55793f68
 Source1:	pico.desktop
-Source2:        %{name}.desktop
-Source3:        %{name}.png
+Source2:	%{name}.desktop
+Source3:	%{name}.png
 Patch0:		%{name}-thread_end.patch
 Patch1:		%{name}-index_display.patch
-URL:		http://www.washington.edu/alpine
+URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	krb5-devel
@@ -131,7 +131,6 @@ install -d $RPM_BUILD_ROOT{%{alpineconfdir},%{_desktopdir},%{_pixmapsdir}}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
