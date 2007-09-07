@@ -8,7 +8,7 @@ Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		0.9999
-%define		patchlevel	9
+%define		patchlevel	18
 Version:	%{ver}.%{patchlevel}
 Release:	1
 Epoch:		1
@@ -18,8 +18,10 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/ 
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	8cab15e911f245f5af34fae3a6bbcf5b
+# Source0-md5:	888ecef4d50e15e4237f7a7a55793f68
 Source1:	pico.desktop
+Source2:        %{name}.desktop
+Source3:        %{name}.png
 URL:		http://www.washington.edu/alpine
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -117,12 +119,15 @@ ajuda de acordo com o contexto está disponível.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{alpineconfdir},%{_desktopdir}}
+install -d $RPM_BUILD_ROOT{%{alpineconfdir},%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
+install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -131,15 +136,17 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README doc/tech-notes.txt
 %dir %{alpineconfdir}
-%attr(755,root,root) %{_bindir}/alpine
+%attr(755,root,root) %{_bindir}/%{name}
 %attr(755,root,root) %{_bindir}/rpload
 %attr(755,root,root) %{_bindir}/rpdump
 #%attr(755,root,root) %{_bindir}/mailutil
 #%attr(2755,root,mail) %{_sbindir}/mlock
-%{_mandir}/man1/alpine.1*
+%{_mandir}/man1/%{name}.1*
 #%{_mandir}/man1/rpload.1*
 #%{_mandir}/man1/rpdump.1*
 #%{_mandir}/man1/mailutil.1*
+%{_desktopdir}/%{name}.desktop
+%{_pixmapsdir}/%{name}.png
 
 %files -n pico
 %defattr(644,root,root,755)
