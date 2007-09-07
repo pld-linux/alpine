@@ -10,7 +10,7 @@ Name:		alpine
 %define		ver		0.9999
 %define		patchlevel	18
 Version:	%{ver}.%{patchlevel}
-Release:	1
+Release:	2
 Epoch:		1
 License:	Apache License 2.0
 Group:		Applications/Mail
@@ -23,6 +23,7 @@ Source1:	pico.desktop
 Source2:        %{name}.desktop
 Source3:        %{name}.png
 Patch0:		%{name}-thread_end.patch
+Patch1:		%{name}-index_display.patch
 URL:		http://www.washington.edu/alpine
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -103,6 +104,7 @@ ajuda de acordo com o contexto está disponível.
 %prep
 %setup -q -n %{name}-%{ver}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__autoconf}
