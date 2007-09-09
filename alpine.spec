@@ -4,11 +4,12 @@
 # - review patches from pine:
 #   - home_etc support
 #   - ....many more
+# - separate package with tcl web-frontend
 Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		0.9999
-%define		patchlevel	20
+%define		patchlevel	21
 Version:	%{ver}.%{patchlevel}
 Release:	1
 Epoch:		1
@@ -18,7 +19,7 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/ 
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	7e2277e8e7a4a93301986cb3daa58805
+# Source0-md5:	39f7337366e5d3e4d5c1351d272d22ce
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
@@ -32,6 +33,7 @@ BuildRequires:	ncurses-devel
 BuildRequires:	openldap-devel
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
+# Only for web-frontend
 BuildRequires:	tcl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
