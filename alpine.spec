@@ -9,7 +9,7 @@ Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		0.9999
-%define		patchlevel	38
+%define		patchlevel	42
 Version:	%{ver}.%{patchlevel}
 Release:	1
 Epoch:		1
@@ -19,7 +19,7 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/ 
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	77953f8d0fc7f8b2d0aa3787bb0982de
+# Source0-md5:	209219a96e59681b37450636afeb5d1f
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
@@ -33,8 +33,8 @@ BuildRequires:	ncurses-devel
 BuildRequires:	openldap-devel
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
-# Only for web-frontend
-BuildRequires:	tcl-devel
+# Only for web-frontend:
+#BuildRequires:	tcl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		alpineconfdir	/etc/%{name}
@@ -114,6 +114,7 @@ ajuda de acordo com o contexto está disponível.
 %{__automake}
 %configure \
 	--enable-quotas \
+	--without-tcl \
 	--with-smtp-msa=%{_libdir}/sendmail \
 	--with-spellcheck-prog=aspell \
 	--with-system-pinerc=%{alpineconfdir}/%{name}.conf \
