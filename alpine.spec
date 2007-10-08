@@ -28,7 +28,6 @@ Patch1:		%{name}-index_display.patch
 URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	krb5-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	openldap-devel
 BuildRequires:	openssl-devel
