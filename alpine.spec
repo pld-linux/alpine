@@ -4,11 +4,12 @@
 # - review patches from pine:
 #   - home_etc support
 #   - ....many more
+# - separate package with tcl web-frontend
 Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		0.9999
-%define		patchlevel	18
+%define		patchlevel	59
 Version:	%{ver}.%{patchlevel}
 Release:	1
 Epoch:		1
@@ -18,20 +19,21 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/ 
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	888ecef4d50e15e4237f7a7a55793f68
+# Source0-md5:	f61491228f34e1cfb56f2dc9f1265694
 Source1:	pico.desktop
-Source2:        %{name}.desktop
-Source3:        %{name}.png
+Source2:	%{name}.desktop
+Source3:	%{name}.png
 Patch0:		%{name}-thread_end.patch
-URL:		http://www.washington.edu/alpine
+Patch1:		%{name}-index_display.patch
+URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	krb5-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	openldap-devel
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
-BuildRequires:	tcl-devel
+# Only for web-frontend:
+#BuildRequires:	tcl-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		alpineconfdir	/etc/%{name}
@@ -103,6 +105,7 @@ ajuda de acordo com o contexto está disponível.
 %prep
 %setup -q -n %{name}-%{ver}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__autoconf}
@@ -110,6 +113,7 @@ ajuda de acordo com o contexto está disponível.
 %{__automake}
 %configure \
 	--enable-quotas \
+	--without-tcl \
 	--with-smtp-msa=%{_libdir}/sendmail \
 	--with-spellcheck-prog=aspell \
 	--with-system-pinerc=%{alpineconfdir}/%{name}.conf \
@@ -130,7 +134,6 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -141,12 +144,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/%{name}
 %attr(755,root,root) %{_bindir}/rpload
 %attr(755,root,root) %{_bindir}/rpdump
-#%attr(755,root,root) %{_bindir}/mailutil
-#%attr(2755,root,mail) %{_sbindir}/mlock
 %{_mandir}/man1/%{name}.1*
-#%{_mandir}/man1/rpload.1*
-#%{_mandir}/man1/rpdump.1*
-#%{_mandir}/man1/mailutil.1*
+%{_mandir}/man1/rpload.1*
+%{_mandir}/man1/rpdump.1*
 %{_desktopdir}/%{name}.desktop
 %{_pixmapsdir}/%{name}.png
 
