@@ -5,13 +5,14 @@
 #   - home_etc support
 #   - ....many more
 # - separate package with tcl web-frontend
+# - fix as-needed
 Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		0.9999
 %define		patchlevel	79
 Version:	%{ver}.%{patchlevel}
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	Apache License 2.0
 Group:		Applications/Mail
@@ -38,6 +39,7 @@ BuildRequires:	pam-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		alpineconfdir	/etc/%{name}
+%define		filterout_ld	-Wl,--as-needed
 
 %description
 Alpine -- an Alternatively Licensed Program for Internet News & Email
