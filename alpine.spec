@@ -9,9 +9,9 @@ Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		0.9999
-%define		patchlevel	59
+%define		patchlevel	79
 Version:	%{ver}.%{patchlevel}
-Release:	1
+Release:	0.1
 Epoch:		1
 License:	Apache License 2.0
 Group:		Applications/Mail
@@ -19,7 +19,7 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/ 
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	f61491228f34e1cfb56f2dc9f1265694
+# Source0-md5:	d06708e4274887e260a34d82aa437401
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
@@ -109,6 +109,8 @@ ajuda de acordo com o contexto está disponível.
 %patch1 -p1
 
 %build
+rm -f libtool missing
+%{__libtoolize}
 %{__autoconf}
 %{__aclocal} -I m4
 %{__automake}
