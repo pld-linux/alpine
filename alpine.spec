@@ -31,7 +31,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	krb5-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	openldap-devel
+BuildRequires:	openldap-devel >= 2.4.6
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
 # Only for web-frontend:
