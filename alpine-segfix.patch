@@ -1,0 +1,16 @@
+--- alpine-0.9999/pith/osdep/lstcmpnt.c~	2007-08-20 21:46:37.000000000 +0200
++++ alpine-0.9999/pith/osdep/lstcmpnt.c	2007-11-05 14:37:52.000000000 +0100
+@@ -44,10 +44,10 @@
+ char *
+ last_cmpnt(char *filename)
+ {
+-    register char *p = NULL, *q = filename;
++    char *p = NULL, *q = filename;
+ 
+-    if(!q)
+-      return(q);
++    if(filename == NULL)
++      return NULL;
+ 
+     while((q = strchr(q, FILE_SEP)) != NULL)
+       if(*++q)

@@ -1,0 +1,28 @@
+--- alpine-0.9999/pith/mailcap.c~	2007-08-15 22:28:09.000000000 +0200
++++ alpine-0.9999/pith/mailcap.c	2007-11-05 14:32:39.000000000 +0100
+@@ -881,17 +881,19 @@
+ 		     * have to put those outside of the single quotes.
+ 		     * (The parm+1000 nonsense is to protect against
+ 		     * malicious mail trying to overlow our buffer.)
++		     *
++		     * TCH - Change 2/8/1999
++		     * Also quote the ` slash to prevent execution of arbirtrary code
+ 		     */
+ 		    for(p = parm; *p && p < parm+1000; p++){
+-			if(*p == '\''){
+-			    if(to-tmp_20k_buf+3 < SIZEOF_20KBUF){
++			if((*p == '\'')||(*p=='`')){
++			    if(to-tmp_20k_buf+4 < SIZEOF_20KBUF){
+ 				*to++ = '\'';  /* closing quote */
+ 				*to++ = '\\';
+-				*to++ = '\'';  /* below will be opening quote */
++				*to++ = *p; /* quoted character */
++				*to++ = '\'';  /* opening quote */
+ 			    }
+-			}
+-
+-			if(to-tmp_20k_buf < SIZEOF_20KBUF)
++			} else if(to-tmp_20k_buf < SIZEOF_20KBUF)
+ 			  *to++ = *p;
+ 		    }
+ 
