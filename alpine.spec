@@ -1,16 +1,12 @@
 # TODO:
 # - backport man-pages from pine.spec
-# - alpine should obsolete pine, link pine -> alpine should be made
-# - review patches from pine:
-#   - home_etc support
-#   - ....many more
 # - separate package with tcl web-frontend
 # - fix as-needed
 Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		0.9999
-%define		patchlevel	79
+%define		patchlevel	81
 Version:	%{ver}.%{patchlevel}
 Release:	1
 Epoch:		1
@@ -20,12 +16,22 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/ 
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	d06708e4274887e260a34d82aa437401
+# Source0-md5:	53a098d95920edbdf1383b2e8a4b4a12
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
 Patch0:		%{name}-thread_end.patch
 Patch1:		%{name}-index_display.patch
+Patch2:		%{name}-doc.patch
+Patch3:		%{name}-filter.patch
+Patch4:		%{name}-quote.patch
+Patch5:		%{name}-fhs.patch
+Patch6:		%{name}-segfix.patch
+Patch7:		%{name}-libc-client.patch
+Patch8:		%{name}-fixhome.patch
+Patch9:		%{name}-ssl.patch
+Patch10:	%{name}-no_1777_warning.patch
+Patch11:	%{name}-home_etc.patch
 URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -36,6 +42,7 @@ BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
 # Only for web-frontend:
 #BuildRequires:	tcl-devel
+Obsoletes:	pine
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		alpineconfdir	/etc/%{name}
@@ -109,12 +116,23 @@ ajuda de acordo com o contexto está disponível.
 %setup -q -n %{name}-%{ver}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
+%patch11 -p1
 
 %build
 rm -f libtool missing
 %{__libtoolize}
-%{__autoconf}
 %{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
 %{__automake}
 %configure \
 	--enable-quotas \
@@ -125,8 +143,11 @@ rm -f libtool missing
 	--with-system-fixed-pinerc=%{alpineconfdir}/%{name}.conf.fixed \
 	--with-krb5-dir=%{_prefix} \
 	--with-ldap-dir=%{_prefix} \
-	--with-system-mail-directory=/var/mail
-%{__make}
+	--with-system-mail-directory=/var/mail \
+	--with-passfile=.pine.pwd
+
+%{__make} \
+	GCCOPTLEVEL="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -139,6 +160,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 
+ln -s alpine $RPM_BUILD_ROOT%{_bindir}/pine
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -147,6 +170,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README doc/tech-notes.txt
 %dir %{alpineconfdir}
 %attr(755,root,root) %{_bindir}/%{name}
+%attr(755,root,root) %{_bindir}/pine
 %attr(755,root,root) %{_bindir}/rpload
 %attr(755,root,root) %{_bindir}/rpdump
 %{_mandir}/man1/%{name}.1*
