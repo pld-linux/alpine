@@ -35,6 +35,7 @@ Patch11:	%{name}-home_etc.patch
 URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	home_etc-devel
 BuildRequires:	krb5-devel
 BuildRequires:	ncurses-devel
 BuildRequires:	openldap-devel >= 2.4.6
