@@ -162,6 +162,20 @@ install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 ln -s alpine $RPM_BUILD_ROOT%{_bindir}/pine
 
+$RPM_BUILD_ROOT%{_bindir}/alpine -conf > $RPM_BUILD_ROOT%{alpineconfdir}/alpine.conf
+cat <<EOF > $RPM_BUILD_ROOT%{alpineconfdir}/alpine.conf.fixed
+#
+# Alpine system-wide enforced configuration file - customize as needed
+#
+# This file holds the system-wide enforced values for alpine configuration
+# settings. Any values set in it will override values set in the
+# system-wide default configuration file (%{alpineconfdir}/alpine.conf) and
+# the user's own configuration file (~/.pinerc).
+# For more information on the format of this file, read the
+# comments at the top of %{alpineconfdir}/alpine.conf
+
+EOF
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -169,6 +183,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README doc/tech-notes.txt
 %dir %{alpineconfdir}
+%config(noreplace) %verify(not md5 mtime size) %{alpineconfdir}/alpine.conf
+%config(noreplace) %verify(not md5 mtime size) %{alpineconfdir}/alpine.conf.fixed
 %attr(755,root,root) %{_bindir}/%{name}
 %attr(755,root,root) %{_bindir}/pine
 %attr(755,root,root) %{_bindir}/rpload
