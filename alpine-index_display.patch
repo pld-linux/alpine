@@ -4,7 +4,7 @@
  	static INDEX_COL_S answer_default[] = {
  	    {iStatus, Fixed, 3},
  	    {iMessNo, WeCalculate},
--	    {iSDateTime, WeCalculate},
+-	    {iSDateTime24, WeCalculate},
 +	    {iSDateTimeIso24, WeCalculate},
  	    {iFromTo, Percent, 33}, /* percent of rest */
 -	    {iSizeNarrow, WeCalculate},
