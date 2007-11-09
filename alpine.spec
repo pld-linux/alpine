@@ -8,7 +8,7 @@ Name:		alpine
 %define		ver		0.99999
 %define		patchlevel	4
 Version:	%{ver}.%{patchlevel}
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	Apache License 2.0
 Group:		Applications/Mail
