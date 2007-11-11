@@ -35,9 +35,8 @@ URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	home-etc-devel
-BuildRequires:	krb5-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	openldap-devel >= 2.4.6
+BuildRequires:	openldap-devel
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
 # Only for web-frontend:
@@ -141,7 +140,6 @@ rm -f libtool missing
 	--with-spellcheck-prog=aspell \
 	--with-system-pinerc=%{alpineconfdir}/%{name}.conf \
 	--with-system-fixed-pinerc=%{alpineconfdir}/%{name}.conf.fixed \
-	--with-krb5-dir=%{_prefix} \
 	--with-ldap-dir=%{_prefix} \
 	--with-system-mail-directory=/var/mail \
 	--with-passfile=.pine.pwd
