@@ -43,6 +43,7 @@ BuildRequires:	pam-devel
 # Only for web-frontend:
 #BuildRequires:	tcl-devel
 Obsoletes:	pine
+Provides:	pine = 4.98
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		alpineconfdir	/etc/%{name}
