@@ -6,7 +6,7 @@ Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		0.99999
-%define		patchlevel	4
+%define		patchlevel	7
 Version:	%{ver}.%{patchlevel}
 Release:	1
 Epoch:		1
