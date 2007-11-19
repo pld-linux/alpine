@@ -6,9 +6,9 @@ Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		0.99999
-%define		patchlevel	4
+%define		patchlevel	8
 Version:	%{ver}.%{patchlevel}
-Release:	0.1
+Release:	2
 Epoch:		1
 License:	Apache License 2.0
 Group:		Applications/Mail
@@ -16,33 +16,34 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/ 
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	055a67734af8190a709949f40211c3ed
+# Source0-md5:	9c5a4598feb28d6341c27c74a5770b6c
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
-Patch1:		%{name}-index_display.patch
-Patch2:		%{name}-doc.patch
-Patch3:		%{name}-filter.patch
-Patch4:		%{name}-quote.patch
-Patch5:		%{name}-fhs.patch
-Patch6:		%{name}-segfix.patch
-Patch7:		%{name}-libc-client.patch
-Patch8:		%{name}-fixhome.patch
-Patch9:		%{name}-ssl.patch
-Patch10:	%{name}-no_1777_warning.patch
-Patch11:	%{name}-home_etc.patch
+Patch0:		%{name}-index_display.patch
+Patch1:		%{name}-doc.patch
+Patch2:		%{name}-filter.patch
+Patch3:		%{name}-quote.patch
+Patch4:		%{name}-fhs.patch
+Patch5:		%{name}-segfix.patch
+Patch6:		%{name}-libc-client.patch
+Patch7:		%{name}-fixhome.patch
+Patch8:		%{name}-ssl.patch
+Patch9:		%{name}-no_1777_warning.patch
+Patch10:	%{name}-home_etc.patch
 URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	home-etc-devel
-BuildRequires:	krb5-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	openldap-devel >= 2.4.6
+BuildRequires:	openldap-devel
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
 # Only for web-frontend:
 #BuildRequires:	tcl-devel
 Obsoletes:	pine
+Provides:	pine = 4.98
+Suggests:	aspell
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		alpineconfdir	/etc/%{name}
@@ -114,7 +115,8 @@ ajuda de acordo com o contexto está disponível.
 
 %prep
 %setup -q -n %{name}-%{ver}
-#%patch1 -p1  --FIXME
+%patch0 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -124,7 +126,6 @@ ajuda de acordo com o contexto está disponível.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-%patch11 -p1
 
 %build
 rm -f libtool missing
@@ -137,10 +138,9 @@ rm -f libtool missing
 	--enable-quotas \
 	--without-tcl \
 	--with-smtp-msa=%{_libdir}/sendmail \
-	--with-spellcheck-prog=aspell \
+	--with-simple-spellcheck=aspell \
 	--with-system-pinerc=%{alpineconfdir}/%{name}.conf \
 	--with-system-fixed-pinerc=%{alpineconfdir}/%{name}.conf.fixed \
-	--with-krb5-dir=%{_prefix} \
 	--with-ldap-dir=%{_prefix} \
 	--with-system-mail-directory=/var/mail \
 	--with-passfile=.pine.pwd
