@@ -16,7 +16,7 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/ 
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	ac3f0bf23bd2f675c76a4e26e9db161b
+# Source0-md5:	9c5a4598feb28d6341c27c74a5770b6c
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
@@ -43,6 +43,7 @@ BuildRequires:	pam-devel
 #BuildRequires:	tcl-devel
 Obsoletes:	pine
 Provides:	pine = 4.98
+Suggests:	aspell
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		alpineconfdir	/etc/%{name}
