@@ -6,9 +6,9 @@ Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		0.99999
-%define		patchlevel	7
+%define		patchlevel	8
 Version:	%{ver}.%{patchlevel}
-Release:	1
+Release:	2
 Epoch:		1
 License:	Apache License 2.0
 Group:		Applications/Mail
@@ -137,7 +137,7 @@ rm -f libtool missing
 	--enable-quotas \
 	--without-tcl \
 	--with-smtp-msa=%{_libdir}/sendmail \
-	--with-spellcheck-prog=aspell \
+	--with-simple-spellcheck=aspell \
 	--with-system-pinerc=%{alpineconfdir}/%{name}.conf \
 	--with-system-fixed-pinerc=%{alpineconfdir}/%{name}.conf.fixed \
 	--with-ldap-dir=%{_prefix} \
