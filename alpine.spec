@@ -8,7 +8,7 @@ Name:		alpine
 %define		ver		0.99999
 %define		patchlevel	8
 Version:	%{ver}.%{patchlevel}
-Release:	2
+Release:	3
 Epoch:		1
 License:	Apache License 2.0
 Group:		Applications/Mail
@@ -143,6 +143,9 @@ rm -f libtool missing
 	--with-system-fixed-pinerc=%{alpineconfdir}/%{name}.conf.fixed \
 	--with-ldap-dir=%{_prefix} \
 	--with-system-mail-directory=/var/mail \
+	--with-c-client-target=slx \
+	--with-ssl-dir=/var/lib/openssl/certs \
+	--with-ssl-certs-dir=/var/lib/openssl/certs \
 	--with-passfile=.pine.pwd
 
 %{__make} \
