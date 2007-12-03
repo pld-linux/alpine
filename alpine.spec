@@ -8,7 +8,7 @@ Name:		alpine
 %define		ver		0.99999
 %define		patchlevel	13
 Version:	%{ver}.%{patchlevel}
-Release:	2
+Release:	3
 Epoch:		1
 License:	Apache License 2.0
 Group:		Applications/Mail
@@ -145,6 +145,9 @@ rm -f libtool missing
 	--with-krb5-dir=%{_prefix} \
 	--with-ldap-dir=%{_prefix} \
 	--with-system-mail-directory=/var/mail \
+	--with-c-client-target=slx \
+	--with-ssl-dir=/var/lib/openssl/certs \
+	--with-ssl-certs-dir=/var/lib/openssl/certs \
 	--with-passfile=.pine.pwd
 
 %{__make} \
