@@ -71,10 +71,10 @@ wiele zaawansowanych możliwości, a liczba opcji konfiguracyjnych
 ciągle rośnie.
 
 %package -n pico
-Summary:        Simple text editor in the style of the Pine Composer
-Summary(pl.UTF-8):      Prosty edytor tekstowy w stylu alpine
-Summary(pt_BR.UTF-8):   Editor de textos para terminal simples e fácil de usar
-Group:          Applications/Editors
+Summary:	Simple text editor in the style of the Pine Composer
+Summary(pl.UTF-8):	Prosty edytor tekstowy w stylu alpine
+Summary(pt_BR.UTF-8):	Editor de textos para terminal simples e fácil de usar
+Group:		Applications/Editors
 Provides:	pico = 4.99
 
 %description -n pico
@@ -95,10 +95,10 @@ Assim como no Pine, comandos são mostrados na parte de baixo da tela,
 e ajuda de acordo com o contexto está disponível.
 
 %package -n pilot
-Summary:        Simple file system browser in the style of the Alpine Composer
-Summary(pl.UTF-8):      Prosta przeglądarka plików w stylu composera alpine
-Summary(pt_BR.UTF-8):   Navegador de sistemas de arquivos no estilo do compositor do Alpine
-Group:          Applications/Shells
+Summary:	Simple file system browser in the style of the Alpine Composer
+Summary(pl.UTF-8):	Prosta przeglądarka plików w stylu composera alpine
+Summary(pt_BR.UTF-8):	Navegador de sistemas de arquivos no estilo do compositor do Alpine
+Group:		Applications/Shells
 Provides:	pilot = 4.99
 
 %description -n pilot
