@@ -2,8 +2,8 @@
 # - backport man-pages from pine.spec
 # - separate package with tcl web-frontend
 # - fix as-needed
-Summary:	University of Washington Pine mail user agent
-Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
+Summary:	University of Washington Alpine mail user agent
+Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		0.999999
 %define		patchlevel	3
@@ -14,7 +14,7 @@ License:	Apache License 2.0
 Group:		Applications/Mail
 # Main site:
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
-# Source with applied patches from http://staff.washington.edu/chappa/alpine/ 
+# Source with applied patches from http://staff.washington.edu/chappa/alpine/
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
 # Source0-md5:	9c3f59d0b2418148c4cd94a8e35c561f
 Source1:	pico.desktop
@@ -86,7 +86,7 @@ characters are typed they are immediately inserted into the text.
 %description -n pico -l pl.UTF-8
 Pico jest prostym, zorientowanym na wyświetlanie edytorem bazującym na
 alpine. Tak jak w pine komendy są wyświetlane na dole ekranu oraz
-dostępna jest pomoc konteksowa. Wpisywane znaki są natychmiast
+dostępna jest pomoc kontekstowa. Wpisywane znaki są natychmiast
 włączane do tekstu.
 
 %description -n pico -l pt_BR.UTF-8
@@ -103,13 +103,13 @@ Provides:	pilot = 4.99
 
 %description -n pilot
 Pilot is a simple, display-oriented file system browser based on the
-Alpine message system composer. As with Alpine, commands are displayed at
-the bottom of the screen, and context-sensitive help is provided.
+Alpine message system composer. As with Alpine, commands are displayed
+at the bottom of the screen, and context-sensitive help is provided.
 
 %description -n pilot -l pl.UTF-8
 Pilot jest prostą, zorientowaną na wyświetlanie przeglądarką plików w
-stylu compsera pine. Podobnie jak w alpine polecenia sa wyświetlane na
-dole ekranu oraz jest dostępna pomoc kontekstowa.
+stylu composera pine. Podobnie jak w alpine polecenia są wyświetlane
+na dole ekranu oraz jest dostępna pomoc kontekstowa.
 
 %description -n pilot -l pt_BR.UTF-8
 Pilot é um navegador de sistemas de arquivos baseado no Pine. Assim
