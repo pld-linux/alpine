@@ -42,7 +42,7 @@ BuildRequires:	pam-devel
 # Only for web-frontend:
 #BuildRequires:	tcl-devel
 Obsoletes:	pine
-Provides:	pine = 4.98
+Provides:	pine = 4.99
 Suggests:	aspell
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
