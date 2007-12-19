@@ -6,7 +6,7 @@ Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		0.999999
-%define		patchlevel	3
+%define		patchlevel	9
 Version:	%{ver}.%{patchlevel}
 Release:	1
 Epoch:		1
@@ -16,7 +16,7 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/ 
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	9c3f59d0b2418148c4cd94a8e35c561f
+# Source0-md5:	f860ef6978535bb762e789cd9a3a8085
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
@@ -70,10 +70,11 @@ wiele zaawansowanych możliwości, a liczba opcji konfiguracyjnych
 ciągle rośnie.
 
 %package -n pico
-Summary:        Simple text editor in the style of the Pine Composer
-Summary(pl.UTF-8):      Prosty edytor tekstowy w stylu alpine
-Summary(pt_BR.UTF-8):   Editor de textos para terminal simples e fácil de usar
-Group:          Applications/Editors
+Summary:	Simple text editor in the style of the Pine Composer
+Summary(pl.UTF-8):	Prosty edytor tekstowy w stylu alpine
+Summary(pt_BR.UTF-8):	Editor de textos para terminal simples e fácil de usar
+Group:		Applications/Editors
+Provides:	pico = 4.99
 
 %description -n pico
 Pico is a simple, display-oriented text editor based on the Alpine
@@ -84,7 +85,7 @@ characters are typed they are immediately inserted into the text.
 %description -n pico -l pl.UTF-8
 Pico jest prostym, zorientowanym na wyświetlanie edytorem bazującym na
 alpine. Tak jak w pine komendy są wyświetlane na dole ekranu oraz
-dostępna jest pomoc konteksowa. Wpisywane znaki są natychmiast
+dostępna jest pomoc kontekstowa. Wpisywane znaki są natychmiast
 włączane do tekstu.
 
 %description -n pico -l pt_BR.UTF-8
@@ -93,10 +94,11 @@ Assim como no Pine, comandos são mostrados na parte de baixo da tela,
 e ajuda de acordo com o contexto está disponível.
 
 %package -n pilot
-Summary:        Simple file system browser in the style of the Alpine Composer
-Summary(pl.UTF-8):      Prosta przeglądarka plików w stylu composera alpine
-Summary(pt_BR.UTF-8):   Navegador de sistemas de arquivos no estilo do compositor do Alpine
-Group:          Applications/Shells
+Summary:	Simple file system browser in the style of the Alpine Composer
+Summary(pl.UTF-8):	Prosta przeglądarka plików w stylu composera alpine
+Summary(pt_BR.UTF-8):	Navegador de sistemas de arquivos no estilo do compositor do Alpine
+Group:		Applications/Shells
+Provides:	pilot = 4.99
 
 %description -n pilot
 Pilot is a simple, display-oriented file system browser based on the
