@@ -5,10 +5,10 @@
 Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
-%define		ver		0.99999
-%define		patchlevel	4
+%define		ver		0.999999
+%define		patchlevel	9
 Version:	%{ver}.%{patchlevel}
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	Apache License 2.0
 Group:		Applications/Mail
@@ -16,33 +16,34 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/ 
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	055a67734af8190a709949f40211c3ed
+# Source0-md5:	f860ef6978535bb762e789cd9a3a8085
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
-Patch1:		%{name}-index_display.patch
-Patch2:		%{name}-doc.patch
-Patch3:		%{name}-filter.patch
-Patch4:		%{name}-quote.patch
-Patch5:		%{name}-fhs.patch
-Patch6:		%{name}-segfix.patch
-Patch7:		%{name}-libc-client.patch
-Patch8:		%{name}-fixhome.patch
-Patch9:		%{name}-ssl.patch
-Patch10:	%{name}-no_1777_warning.patch
-Patch11:	%{name}-home_etc.patch
+Patch0:		%{name}-index_display.patch
+Patch1:		%{name}-doc.patch
+Patch2:		%{name}-filter.patch
+Patch3:		%{name}-quote.patch
+Patch4:		%{name}-fhs.patch
+Patch5:		%{name}-segfix.patch
+Patch6:		%{name}-libc-client.patch
+Patch7:		%{name}-fixhome.patch
+Patch8:		%{name}-ssl.patch
+Patch9:		%{name}-no_1777_warning.patch
+Patch10:	%{name}-home_etc.patch
 URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	home-etc-devel
-BuildRequires:	krb5-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	openldap-devel >= 2.4.6
+BuildRequires:	openldap-devel
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
 # Only for web-frontend:
 #BuildRequires:	tcl-devel
 Obsoletes:	pine
+Provides:	pine = 4.99
+Suggests:	aspell
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		alpineconfdir	/etc/%{name}
@@ -69,10 +70,11 @@ wiele zaawansowanych możliwości, a liczba opcji konfiguracyjnych
 ciągle rośnie.
 
 %package -n pico
-Summary:        Simple text editor in the style of the Pine Composer
-Summary(pl.UTF-8):      Prosty edytor tekstowy w stylu alpine
-Summary(pt_BR.UTF-8):   Editor de textos para terminal simples e fácil de usar
-Group:          Applications/Editors
+Summary:	Simple text editor in the style of the Pine Composer
+Summary(pl.UTF-8):	Prosty edytor tekstowy w stylu alpine
+Summary(pt_BR.UTF-8):	Editor de textos para terminal simples e fácil de usar
+Group:		Applications/Editors
+Provides:	pico = 4.99
 
 %description -n pico
 Pico is a simple, display-oriented text editor based on the Alpine
@@ -83,7 +85,7 @@ characters are typed they are immediately inserted into the text.
 %description -n pico -l pl.UTF-8
 Pico jest prostym, zorientowanym na wyświetlanie edytorem bazującym na
 alpine. Tak jak w pine komendy są wyświetlane na dole ekranu oraz
-dostępna jest pomoc konteksowa. Wpisywane znaki są natychmiast
+dostępna jest pomoc kontekstowa. Wpisywane znaki są natychmiast
 włączane do tekstu.
 
 %description -n pico -l pt_BR.UTF-8
@@ -92,10 +94,11 @@ Assim como no Pine, comandos são mostrados na parte de baixo da tela,
 e ajuda de acordo com o contexto está disponível.
 
 %package -n pilot
-Summary:        Simple file system browser in the style of the Alpine Composer
-Summary(pl.UTF-8):      Prosta przeglądarka plików w stylu composera alpine
-Summary(pt_BR.UTF-8):   Navegador de sistemas de arquivos no estilo do compositor do Alpine
-Group:          Applications/Shells
+Summary:	Simple file system browser in the style of the Alpine Composer
+Summary(pl.UTF-8):	Prosta przeglądarka plików w stylu composera alpine
+Summary(pt_BR.UTF-8):	Navegador de sistemas de arquivos no estilo do compositor do Alpine
+Group:		Applications/Shells
+Provides:	pilot = 4.99
 
 %description -n pilot
 Pilot is a simple, display-oriented file system browser based on the
@@ -114,7 +117,8 @@ ajuda de acordo com o contexto está disponível.
 
 %prep
 %setup -q -n %{name}-%{ver}
-#%patch1 -p1  --FIXME
+%patch0 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -124,7 +128,6 @@ ajuda de acordo com o contexto está disponível.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
-%patch11 -p1
 
 %build
 rm -f libtool missing
@@ -137,12 +140,14 @@ rm -f libtool missing
 	--enable-quotas \
 	--without-tcl \
 	--with-smtp-msa=%{_libdir}/sendmail \
-	--with-spellcheck-prog=aspell \
+	--with-simple-spellcheck=aspell \
 	--with-system-pinerc=%{alpineconfdir}/%{name}.conf \
 	--with-system-fixed-pinerc=%{alpineconfdir}/%{name}.conf.fixed \
-	--with-krb5-dir=%{_prefix} \
 	--with-ldap-dir=%{_prefix} \
 	--with-system-mail-directory=/var/mail \
+	--with-c-client-target=slx \
+	--with-ssl-dir=/var/lib/openssl/certs \
+	--with-ssl-certs-dir=/var/lib/openssl/certs \
 	--with-passfile=.pine.pwd
 
 %{__make} \
