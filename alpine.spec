@@ -2,8 +2,8 @@
 # - backport man-pages from pine.spec
 # - separate package with tcl web-frontend
 # - fix as-needed
-Summary:	University of Washington Alpine mail user agent
-Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
+Summary:	University of Washington Pine mail user agent
+Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		1.00
 %define		patchlevel	3
@@ -35,9 +35,8 @@ URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	home-etc-devel
-BuildRequires:	krb5-devel
 BuildRequires:	ncurses-devel
-BuildRequires:	openldap-devel >= 2.4.6
+BuildRequires:	openldap-devel
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
 # Only for web-frontend:
@@ -108,7 +107,7 @@ at the bottom of the screen, and context-sensitive help is provided.
 
 %description -n pilot -l pl.UTF-8
 Pilot jest prostą, zorientowaną na wyświetlanie przeglądarką plików w
-stylu composera pine. Podobnie jak w alpine polecenia są wyświetlane
+stylu composera pine. Podobnie jak w alpine polecenia sa wyświetlane
 na dole ekranu oraz jest dostępna pomoc kontekstowa.
 
 %description -n pilot -l pt_BR.UTF-8
@@ -144,7 +143,6 @@ rm -f libtool missing
 	--with-simple-spellcheck=aspell \
 	--with-system-pinerc=%{alpineconfdir}/%{name}.conf \
 	--with-system-fixed-pinerc=%{alpineconfdir}/%{name}.conf.fixed \
-	--with-krb5-dir=%{_prefix} \
 	--with-ldap-dir=%{_prefix} \
 	--with-system-mail-directory=/var/mail \
 	--with-c-client-target=slx \
