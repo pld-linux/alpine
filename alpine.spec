@@ -182,6 +182,12 @@ cat <<EOF > $RPM_BUILD_ROOT%{alpineconfdir}/alpine.conf.fixed
 
 EOF
 
+%post
+if [ -f "%{alpineconfdir}/alpine.conf" -a -f "%{alpineconfdir}/alpine.conf.rpmnew" ]; then
+	mv %{alpineconfdir}/alpine.conf %{alpineconfdir}/alpine.conf.backup
+	alpine -P %{alpineconfdir}/alpine.conf.backup -conf > /etc/alpine/alpine.conf || exit 0
+fi
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
