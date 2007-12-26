@@ -25,6 +25,6 @@ Comment[sv]=ALPINE mejlprogram
 Icon=alpine
 Exec=alpine
 Terminal=true
-Type=Application 
+Type=Application
 Categories=ConsoleOnly;Network;Email;
 # vi: encoding=utf-8
