@@ -34,6 +34,5 @@ Icon=
 Exec=pico
 Terminal=true
 Type=Application 
-Encoding=UTF-8
 Categories=ConsoleOnly;TextEditor;
 # vi: encoding=utf-8
