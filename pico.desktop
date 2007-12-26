@@ -33,6 +33,6 @@ Comment[zh_TW]=Pico 文字編緝器
 Icon=
 Exec=pico
 Terminal=true
-Type=Application 
+Type=Application
 Categories=ConsoleOnly;TextEditor;
 # vi: encoding=utf-8
