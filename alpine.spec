@@ -6,7 +6,7 @@ Summary:	University of Washington Pine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Pine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 %define		ver		1.00
-%define		patchlevel	3
+%define		patchlevel	6
 Version:	%{ver}.%{patchlevel}
 Release:	1
 Epoch:		1
@@ -27,10 +27,9 @@ Patch3:		%{name}-quote.patch
 Patch4:		%{name}-fhs.patch
 Patch5:		%{name}-segfix.patch
 Patch6:		%{name}-libc-client.patch
-Patch7:		%{name}-fixhome.patch
-Patch8:		%{name}-ssl.patch
-Patch9:		%{name}-no_1777_warning.patch
-Patch10:	%{name}-home_etc.patch
+Patch7:		%{name}-ssl.patch
+Patch8:		%{name}-no_1777_warning.patch
+Patch9:		%{name}-home_etc.patch
 URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -42,7 +41,7 @@ BuildRequires:	pam-devel
 # Only for web-frontend:
 #BuildRequires:	tcl-devel
 Obsoletes:	pine
-Provides:	pine = 4.99
+Provides:	pine = 5.00
 Suggests:	aspell
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -74,7 +73,7 @@ Summary:	Simple text editor in the style of the Pine Composer
 Summary(pl.UTF-8):	Prosty edytor tekstowy w stylu alpine
 Summary(pt_BR.UTF-8):	Editor de textos para terminal simples e fácil de usar
 Group:		Applications/Editors
-Provides:	pico = 4.99
+Provides:	pico = 5.00
 
 %description -n pico
 Pico is a simple, display-oriented text editor based on the Alpine
@@ -98,7 +97,7 @@ Summary:	Simple file system browser in the style of the Alpine Composer
 Summary(pl.UTF-8):	Prosta przeglądarka plików w stylu composera alpine
 Summary(pt_BR.UTF-8):	Navegador de sistemas de arquivos no estilo do compositor do Alpine
 Group:		Applications/Shells
-Provides:	pilot = 4.99
+Provides:	pilot = 5.00
 
 %description -n pilot
 Pilot is a simple, display-oriented file system browser based on the
@@ -127,7 +126,6 @@ ajuda de acordo com o contexto está disponível.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
-%patch10 -p1
 
 %build
 rm -f libtool missing
@@ -179,6 +177,12 @@ cat <<EOF > $RPM_BUILD_ROOT%{alpineconfdir}/alpine.conf.fixed
 # comments at the top of %{alpineconfdir}/alpine.conf
 
 EOF
+
+%post
+if [ -f "%{alpineconfdir}/alpine.conf" -a -f "%{alpineconfdir}/alpine.conf.rpmnew" ]; then
+	mv %{alpineconfdir}/alpine.conf %{alpineconfdir}/alpine.conf.backup
+	alpine -P %{alpineconfdir}/alpine.conf.backup -conf > /etc/alpine/alpine.conf || exit 0
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
