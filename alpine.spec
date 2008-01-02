@@ -16,7 +16,7 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	3937652526da1afe6310e05650ace80c
+# Source0-md5:	2de2a8264512e557898769a286494819
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
