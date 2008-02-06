@@ -2,11 +2,11 @@
 # - backport man-pages from pine.spec
 # - separate package with tcl web-frontend
 # - fix as-needed
+%define		ver		1.00
+%define		patchlevel	12
 Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
-%define		ver		1.00
-%define		patchlevel	12
 Version:	%{ver}.%{patchlevel}
 Release:	2
 Epoch:		1
@@ -41,12 +41,12 @@ BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
 # Only for web-frontend:
 #BuildRequires:	tcl-devel
-Obsoletes:	pine
-Provides:	pine = 5.00
 Suggests:	aspell
+Provides:	pine = 5.00
+Obsoletes:	pine
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		alpineconfdir	/etc/%{name}
+%define		alpineconfdir	%{_sysconfdir}/%{name}
 %define		filterout_ld	-Wl,--as-needed
 
 %description
@@ -140,8 +140,8 @@ rm -f libtool missing
 	--without-tcl \
 	--with-smtp-msa=%{_libdir}/sendmail \
 	--with-simple-spellcheck=aspell \
-	--with-system-pinerc=%{alpineconfdir}/%{name}.conf \
-	--with-system-fixed-pinerc=%{alpineconfdir}/%{name}.conf.fixed \
+	--with-system-pinerc=%{_sysconfdir}/%{name}/%{name}.conf \
+	--with-system-fixed-pinerc=%{_sysconfdir}/%{name}/%{name}.conf.fixed \
 	--with-krb5-dir=%{_prefix} \
 	--with-ldap-dir=%{_prefix} \
 	--with-system-mail-directory=/var/mail \
@@ -155,7 +155,7 @@ rm -f libtool missing
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{alpineconfdir},%{_desktopdir},%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir}/%{name},%{_desktopdir},%{_pixmapsdir}}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -166,24 +166,24 @@ install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 ln -s alpine $RPM_BUILD_ROOT%{_bindir}/pine
 
-$RPM_BUILD_ROOT%{_bindir}/alpine -conf > $RPM_BUILD_ROOT%{alpineconfdir}/alpine.conf
-cat <<EOF > $RPM_BUILD_ROOT%{alpineconfdir}/alpine.conf.fixed
+$RPM_BUILD_ROOT%{_bindir}/alpine -conf > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/alpine.conf
+cat <<'EOF' > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/alpine.conf.fixed
 #
 # Alpine system-wide enforced configuration file - customize as needed
 #
 # This file holds the system-wide enforced values for alpine configuration
 # settings. Any values set in it will override values set in the
-# system-wide default configuration file (%{alpineconfdir}/alpine.conf) and
+# system-wide default configuration file (%{_sysconfdir}/%{name}/alpine.conf) and
 # the user's own configuration file (~/.pinerc).
 # For more information on the format of this file, read the
-# comments at the top of %{alpineconfdir}/alpine.conf
+# comments at the top of %{_sysconfdir}/%{name}/alpine.conf
 
 EOF
 
 %post
-if [ -f "%{alpineconfdir}/alpine.conf" -a -f "%{alpineconfdir}/alpine.conf.rpmnew" ]; then
-	mv %{alpineconfdir}/alpine.conf %{alpineconfdir}/alpine.conf.backup
-	alpine -P %{alpineconfdir}/alpine.conf.backup -conf > /etc/alpine/alpine.conf || exit 0
+if [ -f %{_sysconfdir}/%{name}/alpine.conf -a -f %{_sysconfdir}/%{name}/alpine.conf.rpmnew ]; then
+	cp -f %{_sysconfdir}/%{name}/alpine.conf{,.backup}
+	alpine -P %{_sysconfdir}/%{name}/alpine.conf.backup -conf > %{_sysconfdir}/%{name}/alpine.conf || :
 fi
 
 %clean
@@ -192,9 +192,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README doc/tech-notes.txt
-%dir %{alpineconfdir}
-%config(noreplace) %verify(not md5 mtime size) %{alpineconfdir}/alpine.conf
-%config(noreplace) %verify(not md5 mtime size) %{alpineconfdir}/alpine.conf.fixed
+%dir %{_sysconfdir}/%{name}
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/alpine.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/alpine.conf.fixed
 %attr(755,root,root) %{_bindir}/%{name}
 %attr(755,root,root) %{_bindir}/pine
 %attr(755,root,root) %{_bindir}/rpload
