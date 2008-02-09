@@ -10,7 +10,7 @@ Name:		alpine
 Version:	%{ver}.%{patchlevel}
 Release:	2
 Epoch:		1
-License:	Apache License 2.0
+License:	Apache v2.0
 Group:		Applications/Mail
 # Main site:
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
