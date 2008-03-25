@@ -2,13 +2,13 @@
 # - backport man-pages from pine.spec
 # - separate package with tcl web-frontend
 # - fix as-needed
-%define		ver		1.00
-%define		patchlevel	12
+%define		ver		1.10
+%define		patchlevel	5
 Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 Version:	%{ver}.%{patchlevel}
-Release:	2
+Release:	1
 Epoch:		1
 License:	Apache v2.0
 Group:		Applications/Mail
@@ -16,20 +16,18 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	eccde18b953df022d5e073b7de6b9c1a
+# Source0-md5:	4702729ca72d2f0d9109e9c90979b4b9
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
 Patch0:		%{name}-index_display.patch
 Patch1:		%{name}-doc.patch
 Patch2:		%{name}-filter.patch
-Patch3:		%{name}-quote.patch
-Patch4:		%{name}-fhs.patch
-Patch5:		%{name}-segfix.patch
-Patch6:		%{name}-libc-client.patch
-Patch7:		%{name}-ssl.patch
-Patch8:		%{name}-no_1777_warning.patch
-Patch9:		%{name}-home_etc.patch
+Patch3:		%{name}-fhs.patch
+Patch4:		%{name}-libc-client.patch
+Patch5:		%{name}-ssl.patch
+Patch6:		%{name}-no_1777_warning.patch
+Patch7:		%{name}-home_etc.patch
 URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -125,8 +123,6 @@ ajuda de acordo com o contexto está disponível.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-%patch8 -p1
-%patch9 -p1
 
 %build
 rm -f libtool missing
