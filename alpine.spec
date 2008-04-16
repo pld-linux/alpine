@@ -176,12 +176,6 @@ cat <<'EOF' > $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/alpine.conf.fixed
 
 EOF
 
-%post
-if [ -f %{_sysconfdir}/%{name}/alpine.conf -a -f %{_sysconfdir}/%{name}/alpine.conf.rpmnew ]; then
-	cp -f %{_sysconfdir}/%{name}/alpine.conf{,.backup}
-	alpine -P %{_sysconfdir}/%{name}/alpine.conf.backup -conf > %{_sysconfdir}/%{name}/alpine.conf || :
-fi
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
