@@ -3,7 +3,7 @@
 # - separate package with tcl web-frontend
 # - fix as-needed
 %define		ver		2.00
-%define		patchlevel	4
+%define		patchlevel	7
 Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
@@ -16,7 +16,7 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	c8246074a052c218254adf9d3ee9e284
+# Source0-md5:	027c728084ca3cbce7168fbdad4054e0
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
