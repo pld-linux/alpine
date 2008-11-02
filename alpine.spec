@@ -132,6 +132,7 @@ rm -f libtool missing
 %{__autoheader}
 %{__automake}
 %configure \
+	--%{?debug:en}%{!?debug:dis}able-debug \
 	--enable-quotas \
 	--without-tcl \
 	--with-smtp-msa=%{_libdir}/sendmail \
