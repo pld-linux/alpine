@@ -3,7 +3,7 @@
 # - separate package with tcl web-frontend
 # - fix as-needed
 %define		ver		2.00
-%define		patchlevel	13
+%define		patchlevel	16
 Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
@@ -16,7 +16,7 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	e78fb53acaa23a6fc09ab6d848edc72b
+# Source0-md5:	ffe20000189d06175c46d39b44d01ad5
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
@@ -40,6 +40,8 @@ BuildRequires:	pam-devel
 # Only for web-frontend:
 #BuildRequires:	tcl-devel
 Suggests:	aspell
+Suggests:	ca-certificates
+Conflicts:	ca-certificates < 20080809-4
 Provides:	pine = 6.00
 Obsoletes:	pine
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -144,7 +146,7 @@ rm -f libtool missing
 	--with-system-mail-directory=/var/mail \
 	--with-c-client-target=slx \
 	--with-ssl-dir=/var/lib/openssl/certs \
-	--with-ssl-certs-dir=/var/lib/openssl/certs \
+	--with-ssl-certs-dir=/etc/certs \
 	--with-passfile=.pine.pwd
 
 %{__make} \
