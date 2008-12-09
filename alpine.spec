@@ -36,11 +36,7 @@ BuildRequires:	home-etc-devel
 BuildRequires:	krb5-devel
 %endif
 BuildRequires:	ncurses-devel
-%if "%{pld_release}" == "ac"
 BuildRequires:	openldap-devel
-%else
-BuildRequires:	openldap-devel >= 2.4.6
-%endif
 BuildRequires:	openssl-devel
 BuildRequires:	pam-devel
 # Only for web-frontend:
