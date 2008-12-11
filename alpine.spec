@@ -8,7 +8,7 @@ Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 Version:	%{ver}.%{patchlevel}
-Release:	1
+Release:	2
 Epoch:		1
 License:	Apache v2.0
 Group:		Applications/Mail
@@ -147,8 +147,13 @@ rm -f libtool missing
 	--with-ldap-dir=%{_prefix} \
 	--with-system-mail-directory=/var/mail \
 	--with-c-client-target=slx \
+%if "%{pld_release}" == "ti"
 	--with-ssl-dir=/var/lib/openssl/certs \
+	--with-ssl-certs-dir=/var/lib/openssl/certs \
+%else
+	--with-ssl-dir=/etc/openssl/certs \
 	--with-ssl-certs-dir=/etc/certs \
+%endif
 	--with-passfile=.pine.pwd
 
 %{__make} \
