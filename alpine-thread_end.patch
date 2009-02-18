@@ -1,0 +1,11 @@
+--- ./pith/conf.h.org	2007-09-07 09:11:29.000000000 +0000
++++ ./pith/conf.h	2007-09-07 09:13:00.000000000 +0000
+@@ -58,7 +58,7 @@
+ #define DF_THREAD_EXP_CHAR	"."
+ #endif
+ #ifndef DF_THREAD_LASTREPLY_CHAR
+-#define DF_THREAD_LASTREPLY_CHAR "|"
++#define DF_THREAD_LASTREPLY_CHAR "\\"
+ #endif
+ #ifndef DF_MAILDROPCHECK
+ #define DF_MAILDROPCHECK 	"60"
