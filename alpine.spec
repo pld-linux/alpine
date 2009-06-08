@@ -1,9 +1,5 @@
-# TODO:
-# - backport man-pages from pine.spec
-# - separate package with tcl web-frontend
-# - fix as-needed
 %define		ver		2.00
-%define		patchlevel	25
+%define		patchlevel	29
 Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
@@ -16,7 +12,7 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	7651a7c3aa2d4509b012b0755aa7aebb
+# Source0-md5:	62c43cc447a5a65af1489b76b8a29f6a
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
