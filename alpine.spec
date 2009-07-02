@@ -4,7 +4,7 @@ Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 Version:	%{ver}.%{patchlevel}
-Release:	1
+Release:	2
 Epoch:		1
 License:	Apache v2.0
 Group:		Applications/Mail
@@ -29,7 +29,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	home-etc-devel
 %if "%{pld_release}" != "ac"
-BuildRequires:	krb5-devel
+BuildRequires:	heimdal-devel
 %endif
 BuildRequires:	ncurses-devel
 BuildRequires:	openldap-devel
