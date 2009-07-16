@@ -1,5 +1,5 @@
 %define		ver		2.00
-%define		patchlevel	37
+%define		patchlevel	41
 Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
@@ -12,7 +12,7 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	716cb1ef22327f56c90df2bb7b47b3ca
+# Source0-md5:	c8343e58638ac71cd13f5b59465e23f3
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
