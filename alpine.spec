@@ -4,7 +4,7 @@ Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 Version:	%{ver}.%{patchlevel}
-Release:	1
+Release:	2
 Epoch:		1
 License:	Apache v2.0
 Group:		Applications/Mail
@@ -42,7 +42,7 @@ Suggests:	ca-certificates
 Conflicts:	ca-certificates < 20080809-4
 Provides:	pine = 6.00
 Obsoletes:	pine
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+6c6cBuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		alpineconfdir	%{_sysconfdir}/%{name}
 %define		filterout_ld	-Wl,--as-needed
@@ -57,7 +57,7 @@ features, and an ever-growing number of configuration and
 personal-preference options.
 
 %description -l pl.UTF-8
-Alpine, czyli Alternatively Licensed Program for Internet News & Email
+Alpi6c6cne, czyli Alternatively Licensed Program for Internet News & Email
 (alternatywnie licencjonowany program do newsów i poczty internetowej)
 to narzędzie do czytania, wysyłania i zarządzania wiadomościami
 elektronicznymi. Alpine jest następcą Pine'a i został napisany przez
@@ -135,7 +135,7 @@ rm -f libtool missing
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--enable-quotas \
 	--without-tcl \
-	--with-smtp-msa=%{_libdir}/sendmail \
+	--with-smtp-msa=/usr/lib/sendmail \
 	--with-simple-spellcheck=aspell \
 	--with-system-pinerc=%{_sysconfdir}/%{name}/%{name}.conf \
 	--with-system-fixed-pinerc=%{_sysconfdir}/%{name}/%{name}.conf.fixed \
