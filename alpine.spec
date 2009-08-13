@@ -42,7 +42,7 @@ Suggests:	ca-certificates
 Conflicts:	ca-certificates < 20080809-4
 Provides:	pine = 6.00
 Obsoletes:	pine
-6c6cBuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		alpineconfdir	%{_sysconfdir}/%{name}
 %define		filterout_ld	-Wl,--as-needed
@@ -57,7 +57,7 @@ features, and an ever-growing number of configuration and
 personal-preference options.
 
 %description -l pl.UTF-8
-Alpi6c6cne, czyli Alternatively Licensed Program for Internet News & Email
+Alpine, czyli Alternatively Licensed Program for Internet News & Email
 (alternatywnie licencjonowany program do newsów i poczty internetowej)
 to narzędzie do czytania, wysyłania i zarządzania wiadomościami
 elektronicznymi. Alpine jest następcą Pine'a i został napisany przez
