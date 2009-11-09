@@ -1,3 +1,7 @@
+# TODO:
+#- backport man-pages from pine.spec
+#- separate package with tcl web-frontend
+#- fix as-needed
 %define		ver		2.00
 %define		patchlevel	50
 Summary:	University of Washington Alpine mail user agent
