@@ -35,6 +35,7 @@ BuildRequires:	home-etc-devel
 %if "%{pld_release}" != "ac"
 BuildRequires:	heimdal-devel
 %endif
+BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	openldap-devel
 BuildRequires:	openssl-devel
