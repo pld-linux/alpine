@@ -1,7 +1,8 @@
 # TODO:
-#- backport man-pages from pine.spec
-#- separate package with tcl web-frontend
-#- fix as-needed
+# - backport man-pages from pine.spec
+# - separate package with tcl web-frontend
+# - fix as-needed
+# - pico shouldn't link with kerberos, should it?
 %define		ver		2.00
 %define		patchlevel	53
 Summary:	University of Washington Alpine mail user agent
