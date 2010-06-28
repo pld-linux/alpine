@@ -4,7 +4,7 @@
 # - fix as-needed
 # - pico shouldn't link with kerberos, should it?
 %define		ver		2.00
-%define		patchlevel	65
+%define		patchlevel	67
 Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
@@ -17,7 +17,7 @@ Group:		Applications/Mail
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Source with applied patches from http://staff.washington.edu/chappa/alpine/
 Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	5b0600c5ff5e4a90c2d774abfdc5ab9c
+# Source0-md5:	842f4b7810cc550965b1b3aeae609e14
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
