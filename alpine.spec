@@ -3,6 +3,7 @@
 # - separate package with tcl web-frontend
 # - fix as-needed
 # - pico shouldn't link with kerberos, should it?
+# - switch to http://re-alpine.sourceforge.net/ - RIP alpine
 %define		ver		2.00
 %define		patchlevel	84
 Summary:	University of Washington Alpine mail user agent
