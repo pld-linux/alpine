@@ -10,7 +10,7 @@ Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 Version:	%{ver}.%{patchlevel}
-Release:	6.1
+Release:	7
 Epoch:		1
 License:	Apache v2.0
 Group:		Applications/Mail
