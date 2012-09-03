@@ -1,0 +1,11 @@
+--- ./mapi/rfc1522.c.org	2006-11-21 21:42:46.000000000 +0100
++++ ./mapi/rfc1522.c	2012-09-03 12:42:47.247960402 +0200
+@@ -26,7 +26,7 @@
+ #define	RFC1522_TERM_L	2
+ #define	RFC1522_DLIM	"?"
+ #define	RFC1522_DLIM_L	1
+-#define	RFC1522_MAXW	75
++#define	RFC1522_MAXW	256
+ #define	ESPECIALS	"()<>@,;:\"/[]?.="
+ #define	RFC1522_OVERHEAD(S)	(RFC1522_INIT_L + RFC1522_TERM_L +	\
+ 				 (2 * RFC1522_DLIM_L) + strlen(S) + 1);
