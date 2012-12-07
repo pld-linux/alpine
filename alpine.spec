@@ -10,7 +10,7 @@ Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
 Version:	%{ver}.%{patchlevel}
-Release:	8
+Release:	9
 Epoch:		1
 License:	Apache v2.0
 Group:		Applications/Mail
@@ -33,6 +33,7 @@ Patch7:		%{name}-home_etc.patch
 Patch8:		%{name}-RFC1522_MAXW.patch
 Patch9:		mimedesc.patch
 Patch10:	re-alpine-2.01.smime-signandencrypt.patch
+Patch11:	format-security.patch
 URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -136,6 +137,7 @@ ajuda de acordo com o contexto está disponível.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
+%patch11 -p1
 
 %build
 rm -f libtool missing
