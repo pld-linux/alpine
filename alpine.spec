@@ -3,22 +3,19 @@
 # - separate package with tcl web-frontend
 # - fix as-needed
 # - pico shouldn't link with kerberos, should it?
-# - switch to http://re-alpine.sourceforge.net/ - RIP alpine
-%define		ver		2.00
-%define		patchlevel	84
 Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
-Version:	%{ver}.%{patchlevel}
-Release:	10
+Version:	2.11
+Release:	0.1
 Epoch:		1
 License:	Apache v2.0
 Group:		Applications/Mail
 # Main site:
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
-# Source with applied patches from http://staff.washington.edu/chappa/alpine/
-Source0:	http://staff.washington.edu/chappa/alpine/patches/alpine-%{ver}/%{name}-%{ver}_%{patchlevel}.tar.gz
-# Source0-md5:	70ba4281354f1ba2d341038ec0e323c7
+# Current source is from: http://patches.freeiz.com/alpine/
+Source0:	http://patches.freeiz.com/alpine/patches/%{name}-%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	d2d9ca3716b9a23e5fa41ddf5ad06b6b
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
@@ -32,7 +29,6 @@ Patch6:		%{name}-no_1777_warning.patch
 Patch7:		%{name}-home_etc.patch
 Patch8:		%{name}-RFC1522_MAXW.patch
 Patch9:		mimedesc.patch
-Patch10:	re-alpine-2.01.smime-signandencrypt.patch
 Patch11:	format-security.patch
 URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
@@ -125,7 +121,7 @@ como no Pine, comandos são apresentados na parte de baixo da tela, e
 ajuda de acordo com o contexto está disponível.
 
 %prep
-%setup -q -n %{name}-%{ver}
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -136,8 +132,6 @@ ajuda de acordo com o contexto está disponível.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
-%patch10 -p1
-%patch11 -p1
 
 %build
 rm -f libtool missing
