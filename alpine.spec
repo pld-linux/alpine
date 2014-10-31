@@ -33,21 +33,23 @@ URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
 BuildRequires:	home-etc-devel
-%if "%{pld_release}" != "ac"
-BuildRequires:	heimdal-devel
-%endif
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	openldap-devel
 BuildRequires:	openssl-devel >= 1.0.1c
 BuildRequires:	pam-devel
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 # Only for web-frontend:
 #BuildRequires:	tcl-devel
+%if "%{pld_release}" != "ac"
+BuildRequires:	heimdal-devel
+%endif
 Suggests:	aspell
 Suggests:	ca-certificates
-Conflicts:	ca-certificates < 20080809-4
 Provides:	pine = 6.00
 Obsoletes:	pine
+Conflicts:	ca-certificates < 20080809-4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		alpineconfdir	%{_sysconfdir}/%{name}
@@ -93,9 +95,9 @@ dostępna jest pomoc kontekstowa. Wpisywane znaki są natychmiast
 włączane do tekstu.
 
 %description -n pico -l pt_BR.UTF-8
-Pico é um editor de texto baseado no compositor de mensagens do Alpine.
-Assim como no Pine, comandos são mostrados na parte de baixo da tela,
-e ajuda de acordo com o contexto está disponível.
+Pico é um editor de texto baseado no compositor de mensagens do
+Alpine. Assim como no Pine, comandos são mostrados na parte de baixo
+da tela, e ajuda de acordo com o contexto está disponível.
 
 %package -n pilot
 Summary:	Simple file system browser in the style of the Alpine Composer
@@ -171,9 +173,9 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir}/%{name},%{_desktopdir},%{_pixmapsdir}}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
-install %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
-install %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
+cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_desktopdir}
+cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 ln -s alpine $RPM_BUILD_ROOT%{_bindir}/pine
 
