@@ -39,7 +39,7 @@ BuildRequires:	heimdal-devel
 BuildRequires:	libtool
 BuildRequires:	ncurses-devel
 BuildRequires:	openldap-devel
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 1.0.1c
 BuildRequires:	pam-devel
 # Only for web-frontend:
 #BuildRequires:	tcl-devel
