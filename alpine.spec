@@ -29,7 +29,6 @@ Patch6:		%{name}-no_1777_warning.patch
 Patch7:		%{name}-home_etc.patch
 Patch8:		%{name}-RFC1522_MAXW.patch
 Patch9:		mimedesc.patch
-Patch11:	format-security.patch
 URL:		http://www.washington.edu/alpine/
 BuildRequires:	autoconf
 BuildRequires:	automake
