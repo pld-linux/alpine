@@ -30,7 +30,7 @@ Patch7:		%{name}-home_etc.patch
 Patch8:		%{name}-RFC1522_MAXW.patch
 Patch9:		mimedesc.patch
 URL:		http://www.washington.edu/alpine/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
 BuildRequires:	home-etc-devel
 %if "%{pld_release}" != "ac"
