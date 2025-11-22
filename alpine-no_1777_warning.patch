@@ -1,11 +1,11 @@
---- alpine-0.9999/imap/src/osdep/unix/env_unix.c~	2007-11-05 14:26:20.000000000 +0100
-+++ alpine-0.9999/imap/src/osdep/unix/env_unix.c	2007-11-05 14:50:21.000000000 +0100
-@@ -1215,20 +1215,7 @@
+--- alpine-2.26/imap/src/osdep/unix/env_unix.c~	2025-11-23 00:04:27.000000000 +0100
++++ alpine-2.26/imap/src/osdep/unix/env_unix.c	2025-11-23 00:10:55.157091643 +0100
+@@ -1288,20 +1288,7 @@ long dotlock_lock (char *file,DOTLOCK *b
      }
  
      MM_NOCRITICAL (NIL);	/* no longer critical */
 -				/* find directory/file delimiter */
--    if (s = strrchr (base->lock,'/')) {
+-    if ((s = strrchr (base->lock,'/')) != NULL) {
 -      *s = '\0';		/* tie off at directory */
 -      sprintf(tmp,		/* generate default message */
 -	      "Mailbox vulnerable - directory %.80s must have 1777 protection",

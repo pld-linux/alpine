@@ -3,19 +3,20 @@
 # - separate package with tcl web-frontend
 # - fix as-needed
 # - pico shouldn't link with kerberos, should it?
+# - fix doc.patch
 Summary:	University of Washington Alpine mail user agent
 Summary(pl.UTF-8):	Klient pocztowy Alpine z Uniwersytetu w Waszyngtonie
 Name:		alpine
-Version:	2.11
-Release:	5
+Version:	2.26
+Release:	1
 Epoch:		1
 License:	Apache v2.0
 Group:		Applications/Mail
 # Main site:
 #Source0:	ftp://ftp.cac.washington.edu/alpine/%{name}-%{version}.tar.gz
 # Current source is from: http://patches.freeiz.com/alpine/
-Source0:	http://patches.freeiz.com/alpine/patches/%{name}-%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	d2d9ca3716b9a23e5fa41ddf5ad06b6b
+Source0:	https://alpineapp.email/alpine/patches/%{name}-%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	c4afcb45103642c707807ec7858caac1
 Source1:	pico.desktop
 Source2:	%{name}.desktop
 Source3:	%{name}.png
@@ -24,12 +25,15 @@ Patch1:		%{name}-doc.patch
 Patch2:		%{name}-filter.patch
 Patch3:		%{name}-fhs.patch
 Patch4:		%{name}-libc-client.patch
-Patch5:		%{name}-ssl.patch
+
 Patch6:		%{name}-no_1777_warning.patch
 Patch7:		%{name}-home_etc.patch
 Patch8:		%{name}-RFC1522_MAXW.patch
-Patch9:		mimedesc.patch
-URL:		http://www.washington.edu/alpine/
+
+Patch10:	alpine-2.23-gcc10.patch
+Patch11:	alpine-configure-c99.patch
+Patch12:	quota.patch
+URL:		https://alpineapp.email/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake
 BuildRequires:	home-etc-devel
@@ -124,15 +128,18 @@ ajuda de acordo com o contexto está disponível.
 %prep
 %setup -q
 %patch -P0 -p1
-%patch -P1 -p1
+#%%patch -P1 -p1
 %patch -P2 -p1
 %patch -P3 -p1
 %patch -P4 -p1
-%patch -P5 -p1
+
 %patch -P6 -p1
 %patch -P7 -p1
 %patch -P8 -p1
-%patch -P9 -p1
+
+%patch -P10 -p1
+%patch -P11 -p1
+%patch -P12 -p1
 
 %build
 rm -f libtool missing
@@ -142,6 +149,7 @@ rm -f libtool missing
 %{__autoheader}
 %{__automake}
 %configure \
+	CPPFLAGS="-std=gnu17 %{rpmcppflags}" \
 	--%{?debug:en}%{!?debug:dis}able-debug \
 	--enable-quotas \
 	--without-tcl \
@@ -159,11 +167,12 @@ rm -f libtool missing
 %else
 	--with-ssl-dir=/etc/openssl/certs \
 	--with-ssl-certs-dir=/etc/certs \
+	--with-ssl-include-dir=%{_includedir}/openssl \
 	--with-ssl-lib-dir=%{_libdir} \
 %endif
 	--with-passfile=.pine.pwd
 
-%{__make} \
+%{__make} -j1 \
 	GCCOPTLEVEL="%{rpmcflags}"
 
 %install
@@ -198,7 +207,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README doc/tech-notes.txt
+%doc README doc/tech-notes/tech-notes.txt
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/alpine.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/alpine.conf.fixed

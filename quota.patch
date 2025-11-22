@@ -1,0 +1,10 @@
+--- alpine-2.26/alpine/alpine.c.org	2025-11-22 23:58:22.793330227 +0100
++++ alpine-2.26/alpine/alpine.c	2025-11-22 23:58:29.090557037 +0100
+@@ -95,6 +95,7 @@ int	 remote_pinerc_failure(void);
+ void	 dump_supported_options(void);
+ int      prune_folders_ok(void);
+ void     free_alpine_module_globals(void);
++long     disk_quota(char *, int *);
+ #ifdef	WIN32
+ char	*pine_user_callback(void);
+ #endif
